@@ -19,6 +19,7 @@ android {
         targetSdkVersion 32
         versionCode 14
         versionName "1.0.0"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
     compileOptions {
@@ -47,6 +48,9 @@ android {
 }
 
 dependencies {
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.0-rc01'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.0-rc01'
+
     def retrofit_version = "2.9.0"
     def retrofit_gson_version = "2.9.0"
     def okhttp_logging_version = "4.9.2"
@@ -91,4 +95,32 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:29.0.3')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation "androidx.tracing:tracing:1.1.0"
+    testImplementation 'junit:junit:4.+'
+    testImplementation 'io.qameta.allure:allure-junit4:2.17.0'
+    testImplementation 'io.qameta.allure:allure-java-commons:2.17.0'
+
+    implementation group: 'net.datafaker', name: 'datafaker', version: '1.8.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    implementation 'androidx.recyclerview:recyclerview:1.2.0'
+
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.0-rc01'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.6.0-rc01'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.4.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-accessibility:3.4.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-web:3.4.0'
+    androidTestImplementation 'androidx.test.espresso.idling:idling-concurrent:3.4.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.4.0'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.0-rc01'
+    androidTestImplementation 'androidx.test:core:1.4.0'
+    androidTestImplementation 'androidx.test:rules:1.6.0-rc01'
+    androidTestImplementation 'androidx.test:runner:1.5.2'
+    androidTestImplementation 'org.hamcrest:hamcrest:2.2'
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+    androidTestImplementation "io.qameta.allure:allure-kotlin-model:2.4.0"
+    androidTestImplementation 'io.qameta.allure:allure-kotlin-commons:2.4.0'
+    androidTestImplementation "io.qameta.allure:allure-kotlin-junit4:2.4.0"
+    androidTestImplementation "io.qameta.allure:allure-kotlin-android:2.4.0"
 }
