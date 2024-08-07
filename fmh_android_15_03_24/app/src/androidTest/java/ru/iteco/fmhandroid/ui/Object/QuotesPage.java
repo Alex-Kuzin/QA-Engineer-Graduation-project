@@ -14,21 +14,21 @@ import androidx.test.espresso.ViewInteraction;
 import ru.iteco.fmhandroid.R;
 
 public class QuotesPage {
-    public static final void goToQuotes() {
+    public void goToQuotes() {
         step("Переход на страницу `Тематические цитаты`");
         waitingForElement(R.id.our_mission_image_button);
         clickButton(quotesButtonId);
 
     }
 
-    public static final void checkQuotesText(String tittle, String text) {
+    public void checkQuotesText(String tittle, String text) {
         step("Проверка текста и заголовка цитаты");
         checkText(tittle);
         checkText(text);
 
     }
 
-    public static final void selectQuoteByPosition(int position) {
+    public void selectQuoteByPosition(int position) {
         step("Выбор цитаты по позиции");
         ViewInteraction recyclerView = selectQuoteByPositionId;
         recyclerView.perform(actionOnItemAtPosition(position, click()));

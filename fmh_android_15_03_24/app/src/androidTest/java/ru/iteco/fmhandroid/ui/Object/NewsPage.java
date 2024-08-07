@@ -33,28 +33,28 @@ import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.Data.DataHelper;
 
 public class NewsPage {
-    public static final void goToTheNews() {
+    public void goToTheNews() {
         step("Переход на страницу `Новости`");
         waitingForElement(R.id.main_menu_image_button);
         clickButton(menuButtonId);
         clickButton(newsButtonId);
     }
 
-    public static final void goToTheAddNews() {
+    public void goToTheAddNews() {
         step("Переход на страницу `Добавить новость`");
         waitingForElement(R.id.edit_news_material_button);
         clickButton(editNewsButtonId);
         clickButton(addNewsButtonId);
     }
 
-    public static final void selectCategory(String text) {
+    public void selectCategory(String text) {
         step("Выбираем категорию");
         waitingForElement(R.id.text_input_end_icon);
         clickButton(textInputFieldId);
         inputText(categoryAutoTextFieldId, text);
     }
 
-    public static final void deleteCategory(String text) {
+    public void deleteCategory(String text) {
         step("Удаляем категорию");
         ViewInteraction materialAutoCompleteTextView2 = onView(
                 allOf(withId(R.id.news_item_category_text_auto_complete_text_view), withText(text),
@@ -67,19 +67,19 @@ public class NewsPage {
         materialAutoCompleteTextView2.perform(replaceText(""));
     }
 
-    public static final void selectDate(String date) {
+    public void selectDate(String date) {
         step("Выбираем дату");
         ViewInteraction dateField = onView(withId(R.id.news_item_publish_date_text_input_edit_text));
         dateField.perform(replaceText(date));
     }
 
-    public static final void selectTime(String time) {
+    public void selectTime(String time) {
         step("Выбираем время");
         ViewInteraction timeField = onView(withId(R.id.news_item_publish_time_text_input_edit_text));
         timeField.perform(replaceText(time));
     }
 
-    public static final void inputDescription(String text) {
+    public void inputDescription(String text) {
         step("Вводим описание");
         inputText(descriptionFieldId, text);
     }
@@ -89,13 +89,13 @@ public class NewsPage {
         inputText(titleFieldId, text);
     }
 
-    public static final void checkTextNewsCreated(ViewInteraction id, String text) {
+    public void checkTextNewsCreated(ViewInteraction id, String text) {
         step("Проверяем текст созданной новости");
         ViewInteraction textView = id;
         textView.check(matches(withText(text)));
     }
 
-    public static final void addNew(String category, String date, String time, String description, String title) {
+    public void addNew(String category, String date, String time, String description, String title) {
         step("Создаем новость");
         goToTheNews();
         goToTheAddNews();
@@ -107,7 +107,7 @@ public class NewsPage {
         clickScrollToButton(newsSaveButtonId);
     }
 
-    public static final void openNew(String title) {
+    public void openNew(String title) {
         step("Открываем новость");
         onView(withId(R.id.news_list_recycler_view))
                 .check(matches(isDisplayed()))
@@ -119,7 +119,7 @@ public class NewsPage {
                 .perform(DataHelper.clickChildViewWithId(R.id.edit_news_item_image_view));
     }
 
-    public static final void editNew(String New, String deletedCategory, String category, String description, String title, String date, String time) {
+    public void editNew(String New, String deletedCategory, String category, String description, String title, String date, String time) {
         step("Редактируем новость");
         openNew(New);
         deleteCategory(deletedCategory);
@@ -131,7 +131,7 @@ public class NewsPage {
         clickScrollToButton(newsSaveButtonId);
     }
 
-    public static final void deleteNew(String newName) {
+    public void deleteNew(String newName) {
         step("Удаляем новость");
         goToTheNews();
         clickButton(editNewsButtonId);
@@ -148,12 +148,12 @@ public class NewsPage {
 
     }
 
-    public static final void filterNewsByDateButton() {
+    public void filterNewsByDateButton() {
         step("Фильтруем новости по дате создания");
         clickButton(onView(withId(R.id.sort_news_material_button)));
     }
 
-    public static final void filterDateNews(String startDate, String endDate) {
+    public void filterDateNews(String startDate, String endDate) {
         step("Фильтруем новости по определенным датам");
         ViewInteraction materialButton2 = onView(
                 allOf(withId(R.id.filter_news_material_button),

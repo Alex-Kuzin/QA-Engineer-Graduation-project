@@ -10,7 +10,7 @@ import static ru.iteco.fmhandroid.ui.Data.DataHelper.waitingForElement;
 import ru.iteco.fmhandroid.R;
 
 public class AboutPage {
-    public static final void OpenAboutPage() {
+    public void OpenAboutPage() {
         step("Переход на страницу `О приложении`");
         waitingForElement(R.id.main_menu_image_button);
         clickButton(menuButtonId);
@@ -19,7 +19,7 @@ public class AboutPage {
 
     }
 
-    public static final void clickOutButton() {
+    public void clickOutButton() {
         step("Выход со страницы `О приложении`");
         waitingForElement(R.id.about_company_info_label_text_view);
         clickButton(outAboutButtonId);

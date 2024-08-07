@@ -15,7 +15,7 @@ import static ru.iteco.fmhandroid.ui.Data.DataHelper.waitingForElement;
 import ru.iteco.fmhandroid.R;
 
 public class AuthorizationPage {
-    public static final void LogIn() {
+    public void LogIn() {
         step("Вход в аккаунт");
         waitingForElement(R.id.login_text_input_layout);
         inputText(loginId, validLogin);
@@ -24,7 +24,7 @@ public class AuthorizationPage {
 
     }
 
-    public static final void LogOut() {
+    public void LogOut() {
         step("Выход из аккаунта]");
         clickButton(logOutButtonId1);
         clickButton(logOutButtonId2);

@@ -37,6 +37,9 @@ public class Data {
     public static final ViewInteraction enterButtonId = onView(withId(R.id.enter_button));
     public static final ViewInteraction logOutButtonId1 = onView(withId(R.id.authorization_image_button));
     public static final ViewInteraction logOutButtonId2 = onView(withId(android.R.id.title));
+    public static final String ToastTextInvalidDate = "Something went wrong. Try again later.";
+    public static final String ToastTextLogAndPassEmpty = "Login and password cannot be empty";
+    public static final String spaceInput = " ";
 
     //Данные для About
     public static final ViewInteraction menuButtonId = onView(withId(R.id.main_menu_image_button));
@@ -45,11 +48,37 @@ public class Data {
     public static final ViewInteraction devMark = onView(withId(R.id.about_company_info_label_text_view));
     public static final ViewInteraction privacyPolicyLink = onView(withId(R.id.about_privacy_policy_value_text_view));
     public static final ViewInteraction termsOfUseLink = onView(withId(R.id.about_terms_of_use_value_text_view));
+    public static final String textVersion = "Version:";
+    public static final String textNumVersion = "1.0.0";
+    public static final String textPrivacyPolicy = "Privacy Policy:";
+    public static final String textTermsOfUse = "Terms of use:";
+    public static final String textLinkPrivacyPolicy = "https://vhospice.org/#/privacy-policy/";
+    public static final String textLinkTermsOfUse = "https://vhospice.org/#/terms-of-use";
 
     //Данные для ThematicQuotes
     public static final ViewInteraction quotesButtonId = onView(withId(R.id.our_mission_image_button));
     public static final ViewInteraction selectQuoteByPositionId = onView(allOf(withId(R.id.our_mission_item_list_recycler_view),
             childAtPosition(withClassName(is("androidx.constraintlayout.widget.ConstraintLayout")), 0)));
+    public static final String titleQuotesPage = "Love is all";
+    public static final String quotes1Title = "«Хоспис для меня - это то, каким должен быть мир.\"";
+    public static final String quotes1Text = "\"Ну, идеальное устройство мира в моих глазах. Где никто не оценивает, никто не осудит, где говоришь, и тебя слышат, где, если страшно, тебя обнимут и возьмут за руку, а если холодно тебя согреют.” Юля Капис, волонтер";
+    public static final String quotes2Title = "Хоспис в своем истинном понимании - это творчество";
+    public static final String quotes2Text = "Нет шаблона и стандарта, есть только дух, который живет в разных домах по-разному. Но всегда он добрый, любящий и помогающий.";
+    public static final String quotes3Title = "“В хосписе не работают плохие люди” В.В. Миллионщикова\"";
+    public static final String quotes3Text = "Все сотрудники хосписа - это адвокаты пациента, его прав и потребностей. Поиск путей решения различных задач - это и есть хосписный индивидуальный подход к паллиативной помощи.";
+    public static final String quotes4Title = "«Хоспис – это философия, из которой следует сложнейшая наука медицинской помощи умирающим и искусство ухода, в котором сочетается компетентность и любовь» С. Сандерс";
+    public static final String quotes4Text = "“Творчески и осознанно подойти к проектированию опыта умирания. Создать пространство физическое и психологическое, чтобы позволить жизни отыграть себя до конца. И тогда человек не просто уходит с дороги. Тогда старение и умирание могут стать процессом восхождения до самого конца” \n" +
+            "Би Джей Миллер, врач, руководитель проекта \"Дзен-хоспис\"";
+    public static final String quotes5Title = "Служение человеку с теплом, любовью и заботой";
+    public static final String quotes5Text = "\"Если пациента нельзя вылечить, это не значит, что для него ничего нельзя сделать. То, что кажется мелочью, пустяком в жизни здорового человека - для пациента имеет огромный смысл.\"";
+    public static final String quotes6Title = "\"Хоспис продлевает жизнь, дает надежду, утешение и поддержку.\"";
+    public static final String quotes6Text = "\" Хоспис - это мои новые друзья. Полная перезагрузка жизненных ценностей. В хосписе нет страха и одиночества.\"\n" +
+            "Евгения Белоусова, дочь пациентки Ольги Васильевны";
+    public static final String quotes7Title = "\"Двигатель хосписа - милосердие плюс профессионализм\"\n" +
+                        "А.В. Гнездилов, д.м.н., один из пионеров хосписного движения.";
+    public static final String quotes7Text = "\"Делай добро... А добро заразительно. По-моему, все люди милосердны. Нужно просто говорить с ними об этом, суметь разбудить в них чувство сострадания, заложенное от рождения\" - В.В. Миллионщикова";
+    public static final String quotes8Title = "Важен каждый!";
+    public static final String quotes8Text = "\"Каждый, кто оказывается в стенах хосписа, имеет огромное значение в жизни хосписа и его подопечных\"";
 
     //Данные для News
     public static final LocalDate date = LocalDate.now();
@@ -59,7 +88,7 @@ public class Data {
     public static final String parseDay = Integer.toString(dayOfMonth);
     public static final String parseMonth = Integer.toString(month);
     public static final String parseYear = Integer.toString(year);
-    public static final String localDateToStr = parseDay + "." + "0" + parseMonth + "." + parseYear;
+    public static final String localDateToStr = "0" + parseDay + "." + "0" + parseMonth + "." + parseYear;
     static int randomNumber = ThreadLocalRandom.current().nextInt(8);
     static LocalDate randomDate = date.plusWeeks(randomNumber);
     public static final int yearAfter = randomDate.getYear();
@@ -87,8 +116,13 @@ public class Data {
             childAtPosition(childAtPosition(withClassName(is("android.widget.LinearLayout")), 1), 0), isDisplayed()));
     public static final ViewInteraction descriptionFieldId = onView(withId(R.id.news_item_description_text_input_edit_text));
     public static final ViewInteraction titleFieldId = onView(withId(R.id.news_item_title_text_input_edit_text));
-    public static final ViewInteraction newsSaveButtonId = onView(allOf(withId(R.id.save_button), withText("Save"), withContentDescription("Save"),
-            childAtPosition(childAtPosition(withClassName(is("com.google.android.material.card.MaterialCardView")), 0), 6)));
+    public static final ViewInteraction newsSaveButtonId = onView(
+            allOf(withId(R.id.save_button), withText("Save"), withContentDescription("Save"),
+                    childAtPosition(
+                            childAtPosition(
+                                    withClassName(is("com.google.android.material.card.MaterialCardView")),
+                                    0),
+                            6)));
     public static final ViewInteraction createdEditNewsId = onView(allOf(withId(R.id.news_item_title_text_view), withText(titleAddNew), withParent(withParent(withId(R.id.news_item_material_card_view))), isDisplayed()));
     public static final ViewInteraction createdEditNewsId2 = onView(allOf(withId(R.id.news_item_title_text_view), withText(titleEditNew), withParent(withParent(withId(R.id.news_item_material_card_view))), isDisplayed()));
     public static final ViewInteraction editNewsButtonId2 = onView(allOf(withId(R.id.edit_news_material_button), childAtPosition(
@@ -98,6 +132,10 @@ public class Data {
     public static final ViewInteraction newOkButtonId = onView(allOf(withId(android.R.id.button1), withText("OK"),
             childAtPosition(childAtPosition(withId(com.google.android.material.R.id.buttonPanel), 0), 3)));
     public static final ViewInteraction deleteOkButtonId = onView(allOf(withId(android.R.id.button1)));
+    public static final String timeAddNew = "10:00";
+    public static final String timeEditNew = "18:00";
+    public static final String toastEmptyFields = "Fill empty fields";
+    public static final String emptyValue = "";
 
     public static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {

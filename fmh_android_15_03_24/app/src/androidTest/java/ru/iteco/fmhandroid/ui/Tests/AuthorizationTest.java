@@ -1,10 +1,13 @@
 package ru.iteco.fmhandroid.ui.Tests;
 
+import static ru.iteco.fmhandroid.ui.Data.Data.ToastTextInvalidDate;
+import static ru.iteco.fmhandroid.ui.Data.Data.ToastTextLogAndPassEmpty;
 import static ru.iteco.fmhandroid.ui.Data.Data.enterButtonId;
 import static ru.iteco.fmhandroid.ui.Data.Data.invalidLogin;
 import static ru.iteco.fmhandroid.ui.Data.Data.invalidPassword;
 import static ru.iteco.fmhandroid.ui.Data.Data.loginId;
 import static ru.iteco.fmhandroid.ui.Data.Data.passwordId;
+import static ru.iteco.fmhandroid.ui.Data.Data.spaceInput;
 import static ru.iteco.fmhandroid.ui.Data.Data.validLogin;
 import static ru.iteco.fmhandroid.ui.Data.Data.validPassword;
 import static ru.iteco.fmhandroid.ui.Data.DataHelper.checkToasts;
@@ -12,8 +15,6 @@ import static ru.iteco.fmhandroid.ui.Data.DataHelper.clickButton;
 import static ru.iteco.fmhandroid.ui.Data.DataHelper.generateScreenshotName;
 import static ru.iteco.fmhandroid.ui.Data.DataHelper.inputText;
 import static ru.iteco.fmhandroid.ui.Data.DataHelper.waitingForElement;
-import static ru.iteco.fmhandroid.ui.Object.AuthorizationPage.LogIn;
-import static ru.iteco.fmhandroid.ui.Object.AuthorizationPage.LogOut;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
@@ -29,12 +30,14 @@ import io.qameta.allure.kotlin.Epic;
 import io.qameta.allure.kotlin.junit4.DisplayName;
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.AppActivity;
+import ru.iteco.fmhandroid.ui.Object.AuthorizationPage;
 
 
 @Epic("Тестирование страницы Авторизации")
 @LargeTest
 @RunWith(AllureAndroidJUnit4.class)
 public class AuthorizationTest {
+    AuthorizationPage authorizationPage = new AuthorizationPage();
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(AppActivity.class);
@@ -49,9 +52,9 @@ public class AuthorizationTest {
 
     @Test
     public void validData() {
-        LogIn();
+        authorizationPage.LogIn();
         waitingForElement(R.id.container_list_news_include_on_fragment_main);
-        LogOut();
+        authorizationPage.LogOut();
 
     }
 
@@ -61,7 +64,7 @@ public class AuthorizationTest {
         inputText(loginId, invalidLogin);
         inputText(passwordId, invalidPassword);
         clickButton(enterButtonId);
-        checkToasts("Something went wrong. Try again later.");
+        checkToasts(ToastTextInvalidDate);
 
     }
 
@@ -69,17 +72,17 @@ public class AuthorizationTest {
     @DisplayName("Поля не заполнены")
     public void emptyFields() {
         clickButton(enterButtonId);
-        checkToasts("Login and password cannot be empty");
+        checkToasts(ToastTextLogAndPassEmpty);
 
     }
 
     @Test
     @DisplayName("Поля заполнены пробелом")
     public void spaceData() {
-        inputText(loginId, " ");
-        inputText(passwordId, " ");
+        inputText(loginId, spaceInput);
+        inputText(passwordId, spaceInput);
         clickButton(enterButtonId);
-        checkToasts("Login and password cannot be empty");
+        checkToasts(ToastTextLogAndPassEmpty);
 
     }
 
@@ -88,7 +91,7 @@ public class AuthorizationTest {
     public void emptyPassword() {
         inputText(loginId, validLogin);
         clickButton(enterButtonId);
-        checkToasts("Login and password cannot be empty");
+        checkToasts(ToastTextLogAndPassEmpty);
 
     }
 
@@ -97,7 +100,7 @@ public class AuthorizationTest {
     public void emptyLogin() {
         inputText(passwordId, validPassword);
         clickButton(enterButtonId);
-        checkToasts("Login and password cannot be empty");
+        checkToasts(ToastTextLogAndPassEmpty);
 
     }
 }

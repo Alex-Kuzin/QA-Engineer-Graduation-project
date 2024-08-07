@@ -1,12 +1,22 @@
 package ru.iteco.fmhandroid.ui.Tests;
 
+import static ru.iteco.fmhandroid.ui.Data.Data.quotes2Text;
+import static ru.iteco.fmhandroid.ui.Data.Data.quotes2Title;
+import static ru.iteco.fmhandroid.ui.Data.Data.quotes3Text;
+import static ru.iteco.fmhandroid.ui.Data.Data.quotes3Title;
+import static ru.iteco.fmhandroid.ui.Data.Data.quotes4Text;
+import static ru.iteco.fmhandroid.ui.Data.Data.quotes4Title;
+import static ru.iteco.fmhandroid.ui.Data.Data.quotes5Text;
+import static ru.iteco.fmhandroid.ui.Data.Data.quotes5Title;
+import static ru.iteco.fmhandroid.ui.Data.Data.quotes6Text;
+import static ru.iteco.fmhandroid.ui.Data.Data.quotes6Title;
+import static ru.iteco.fmhandroid.ui.Data.Data.quotes7Text;
+import static ru.iteco.fmhandroid.ui.Data.Data.quotes7Title;
+import static ru.iteco.fmhandroid.ui.Data.Data.quotes8Text;
+import static ru.iteco.fmhandroid.ui.Data.Data.quotes8Title;
+import static ru.iteco.fmhandroid.ui.Data.Data.titleQuotesPage;
 import static ru.iteco.fmhandroid.ui.Data.DataHelper.checkText;
 import static ru.iteco.fmhandroid.ui.Data.DataHelper.generateScreenshotName;
-import static ru.iteco.fmhandroid.ui.Object.AuthorizationPage.LogIn;
-import static ru.iteco.fmhandroid.ui.Object.AuthorizationPage.LogOut;
-import static ru.iteco.fmhandroid.ui.Object.QuotesPage.checkQuotesText;
-import static ru.iteco.fmhandroid.ui.Object.QuotesPage.goToQuotes;
-import static ru.iteco.fmhandroid.ui.Object.QuotesPage.selectQuoteByPosition;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
@@ -22,11 +32,17 @@ import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.Epic;
 import io.qameta.allure.kotlin.junit4.DisplayName;
 import ru.iteco.fmhandroid.ui.AppActivity;
+import ru.iteco.fmhandroid.ui.Data.Data;
+import ru.iteco.fmhandroid.ui.Object.AuthorizationPage;
+import ru.iteco.fmhandroid.ui.Object.QuotesPage;
 
 @Epic("Тестирование страницы `Тематические цитаты`")
 @LargeTest
 @RunWith(AllureAndroidJUnit4.class)
 public class ThematicQuotesTest {
+    QuotesPage quotesPage = new QuotesPage();
+    Data data = new Data();
+    AuthorizationPage authorizationPage = new AuthorizationPage();
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(AppActivity.class);
@@ -36,102 +52,75 @@ public class ThematicQuotesTest {
 
     @After
     public void Out() {
-        LogOut();
+        authorizationPage.LogOut();
     }
 
     @Before
     public void In() {
-        LogIn();
-        goToQuotes();
+        authorizationPage.LogIn();
+        quotesPage.goToQuotes();
 
     }
 
     @Test
     @DisplayName("Проверяем заголовок страницы")
     public void QuotesTitle() {
-        checkText("Love is all");
+        checkText(titleQuotesPage);
     }
 
     @Test
     @DisplayName("Проверяем текст и заголовок цитаты")
     public void quotation1() {
-        selectQuoteByPosition(0);
-        checkQuotesText(
-                "«Хоспис для меня - это то, каким должен быть мир.\"",
-                "\"Ну, идеальное устройство мира в моих глазах. Где никто не оценивает, никто не осудит, где говоришь, и тебя слышат, где, если страшно, тебя обнимут и возьмут за руку, а если холодно тебя согреют.” Юля Капис, волонтер"
-        );
+        quotesPage.selectQuoteByPosition(0);
+        quotesPage.checkQuotesText(data.quotes1Title, data.quotes1Text);
     }
 
     @Test
     @DisplayName("Проверяем текст и заголовок цитаты")
     public void quotation2() {
-        selectQuoteByPosition(1);
-        checkQuotesText(
-                "Хоспис в своем истинном понимании - это творчество",
-                "Нет шаблона и стандарта, есть только дух, который живет в разных домах по-разному. Но всегда он добрый, любящий и помогающий."
-        );
+        quotesPage.selectQuoteByPosition(1);
+        quotesPage.checkQuotesText(quotes2Title, quotes2Text);
     }
 
     @Test
     @DisplayName("Проверяем текст и заголовок цитаты")
     public void quotation3() {
-        selectQuoteByPosition(2);
-        checkQuotesText(
-                "“В хосписе не работают плохие люди” В.В. Миллионщикова\"",
-                "Все сотрудники хосписа - это адвокаты пациента, его прав и потребностей. Поиск путей решения различных задач - это и есть хосписный индивидуальный подход к паллиативной помощи."
-        );
+        quotesPage.selectQuoteByPosition(2);
+        quotesPage.checkQuotesText(quotes3Title, quotes3Text);
     }
 
     @Test
     @DisplayName("Проверяем текст и заголовок цитаты")
     public void quotation4() {
-        selectQuoteByPosition(3);
-        checkQuotesText(
-                "«Хоспис – это философия, из которой следует сложнейшая наука медицинской помощи умирающим и искусство ухода, в котором сочетается компетентность и любовь» С. Сандерс",
-                "“Творчески и осознанно подойти к проектированию опыта умирания. Создать пространство физическое и психологическое, чтобы позволить жизни отыграть себя до конца. И тогда человек не просто уходит с дороги. Тогда старение и умирание могут стать процессом восхождения до самого конца” \n" +
-                        "Би Джей Миллер, врач, руководитель проекта \"Дзен-хоспис\""
-        );
+        quotesPage.selectQuoteByPosition(3);
+        quotesPage.checkQuotesText(quotes4Title, quotes4Text);
     }
 
     @Test
     @DisplayName("Проверяем текст и заголовок цитаты")
     public void quotation5() {
-        selectQuoteByPosition(4);
-        checkQuotesText(
-                "Служение человеку с теплом, любовью и заботой",
-                "\"Если пациента нельзя вылечить, это не значит, что для него ничего нельзя сделать. То, что кажется мелочью, пустяком в жизни здорового человека - для пациента имеет огромный смысл.\""
-        );
+        quotesPage.selectQuoteByPosition(4);
+        quotesPage.checkQuotesText(quotes5Title, quotes5Text);
     }
 
     @Test
     @DisplayName("Проверяем текст и заголовок цитаты")
     public void quotation6() {
-        selectQuoteByPosition(5);
-        checkQuotesText(
-                "\"Хоспис продлевает жизнь, дает надежду, утешение и поддержку.\"",
-                "\" Хоспис - это мои новые друзья. Полная перезагрузка жизненных ценностей. В хосписе нет страха и одиночества.\"\n" +
-                        "Евгения Белоусова, дочь пациентки Ольги Васильевны"
-        );
+        quotesPage.selectQuoteByPosition(5);
+        quotesPage.checkQuotesText(quotes6Title, quotes6Text);
     }
 
     @Test
     @DisplayName("Проверяем текст и заголовок цитаты")
     public void quotation7() {
-        selectQuoteByPosition(6);
-        checkQuotesText(
-                "\"Двигатель хосписа - милосердие плюс профессионализм\"\n" +
-                        "А.В. Гнездилов, д.м.н., один из пионеров хосписного движения.",
-                "\"Делай добро... А добро заразительно. По-моему, все люди милосердны. Нужно просто говорить с ними об этом, суметь разбудить в них чувство сострадания, заложенное от рождения\" - В.В. Миллионщикова"
-        );
+        quotesPage.selectQuoteByPosition(6);
+        quotesPage.checkQuotesText(quotes7Title, quotes7Text);
     }
 
     @Test
     @DisplayName("Проверяем текст и заголовок цитаты")
     public void quotation8() {
-        selectQuoteByPosition(7);
-        checkQuotesText(
-                "Важен каждый!",
-                "\"Каждый, кто оказывается в стенах хосписа, имеет огромное значение в жизни хосписа и его подопечных\""
-        );
+        quotesPage.selectQuoteByPosition(7);
+        quotesPage.checkQuotesText(quotes8Title, quotes8Text);
     }
 }
