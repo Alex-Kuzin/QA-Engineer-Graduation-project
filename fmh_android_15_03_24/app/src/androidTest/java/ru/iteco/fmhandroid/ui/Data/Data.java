@@ -116,13 +116,7 @@ public class Data {
             childAtPosition(childAtPosition(withClassName(is("android.widget.LinearLayout")), 1), 0), isDisplayed()));
     public static final ViewInteraction descriptionFieldId = onView(withId(R.id.news_item_description_text_input_edit_text));
     public static final ViewInteraction titleFieldId = onView(withId(R.id.news_item_title_text_input_edit_text));
-    public static final ViewInteraction newsSaveButtonId = onView(
-            allOf(withId(R.id.save_button), withText("Save"), withContentDescription("Save"),
-                    childAtPosition(
-                            childAtPosition(
-                                    withClassName(is("com.google.android.material.card.MaterialCardView")),
-                                    0),
-                            6)));
+    public static final ViewInteraction newsSaveButtonId = onView(withId(R.id.save_button));
     public static final ViewInteraction createdEditNewsId = onView(allOf(withId(R.id.news_item_title_text_view), withText(titleAddNew), withParent(withParent(withId(R.id.news_item_material_card_view))), isDisplayed()));
     public static final ViewInteraction createdEditNewsId2 = onView(allOf(withId(R.id.news_item_title_text_view), withText(titleEditNew), withParent(withParent(withId(R.id.news_item_material_card_view))), isDisplayed()));
     public static final ViewInteraction editNewsButtonId2 = onView(allOf(withId(R.id.edit_news_material_button), childAtPosition(

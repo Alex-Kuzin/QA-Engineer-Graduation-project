@@ -53,14 +53,9 @@ public class NewsTest {
     public ScreenshotRule screenshotRule = new ScreenshotRule(ScreenshotRule.Mode.FAILURE, generateScreenshotName("Failed"));
 
 
-    @After
-    public void Out() {
-        authorizationPage.LogOut();
-    }
-
     @Before
-    public void in() {
-        authorizationPage.LogIn();
+    public void In() {
+        authorizationPage.logInCheck();
     }
 
 
@@ -115,6 +110,5 @@ public class NewsTest {
         waitingForElement(R.id.edit_news_material_button);
         clickButton(editNewsButtonId2);
         newsPage.filterNewsByDateButton();
-
     }
 }

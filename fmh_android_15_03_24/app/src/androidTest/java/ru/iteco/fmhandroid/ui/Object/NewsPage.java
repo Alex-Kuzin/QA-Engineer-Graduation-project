@@ -3,6 +3,7 @@ package ru.iteco.fmhandroid.ui.Object;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.replaceText;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItem;
 import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
@@ -26,9 +27,13 @@ import static ru.iteco.fmhandroid.ui.Data.DataHelper.clickScrollToButton;
 import static ru.iteco.fmhandroid.ui.Data.DataHelper.inputText;
 import static ru.iteco.fmhandroid.ui.Data.DataHelper.waitingForElement;
 
+import androidx.test.espresso.IdlingPolicies;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 
+import java.util.concurrent.TimeUnit;
+
+import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.Data.DataHelper;
 
@@ -104,7 +109,8 @@ public class NewsPage {
         selectTime(time);
         inputDescription(description);
         inpuTitle(title);
-        clickScrollToButton(newsSaveButtonId);
+        clickSaveButtonWithScroll();
+        //clickScrollToButton(newsSaveButtonId);
     }
 
     public void openNew(String title) {
@@ -128,7 +134,8 @@ public class NewsPage {
         selectDate(date);
         selectTime(time);
         inputDescription(description);
-        clickScrollToButton(newsSaveButtonId);
+        clickSaveButtonWithScroll();
+        //clickScrollToButton(newsSaveButtonId);
     }
 
     public void deleteNew(String newName) {
@@ -183,6 +190,11 @@ public class NewsPage {
                                 6)));
 
         filterButton.perform(click());
+    }
+    private final int saveButtonId = R.id.save_button;
+    public void clickSaveButtonWithScroll() {
+        Allure.step("Клик со скроллом по кнопке c id: " + saveButtonId);
+        onView((withId(saveButtonId))).perform(scrollTo(), click());
     }
 }
 

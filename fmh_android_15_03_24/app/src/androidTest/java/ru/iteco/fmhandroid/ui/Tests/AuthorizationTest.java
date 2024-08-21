@@ -1,5 +1,9 @@
 package ru.iteco.fmhandroid.ui.Tests;
 
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static ru.iteco.fmhandroid.ui.Data.Data.ToastTextInvalidDate;
 import static ru.iteco.fmhandroid.ui.Data.Data.ToastTextLogAndPassEmpty;
 import static ru.iteco.fmhandroid.ui.Data.Data.enterButtonId;
@@ -14,6 +18,7 @@ import static ru.iteco.fmhandroid.ui.Data.DataHelper.checkToasts;
 import static ru.iteco.fmhandroid.ui.Data.DataHelper.clickButton;
 import static ru.iteco.fmhandroid.ui.Data.DataHelper.generateScreenshotName;
 import static ru.iteco.fmhandroid.ui.Data.DataHelper.inputText;
+import static ru.iteco.fmhandroid.ui.Data.DataHelper.waitForElement;
 import static ru.iteco.fmhandroid.ui.Data.DataHelper.waitingForElement;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
@@ -26,6 +31,7 @@ import org.junit.runner.RunWith;
 
 import io.qameta.allure.android.rules.ScreenshotRule;
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
+import io.qameta.allure.kotlin.Allure;
 import io.qameta.allure.kotlin.Epic;
 import io.qameta.allure.kotlin.junit4.DisplayName;
 import ru.iteco.fmhandroid.R;
@@ -44,11 +50,11 @@ public class AuthorizationTest {
     @Rule
     public ScreenshotRule screenshotRule = new ScreenshotRule(ScreenshotRule.Mode.FAILURE, generateScreenshotName("Failed"));
 
-
     @Before
-    public void waitElements() {
-        waitingForElement(R.id.login_text_input_layout);
+    public void out() {
+        authorizationPage.logOutCheck();
     }
+
 
     @Test
     public void validData() {

@@ -50,16 +50,10 @@ public class ThematicQuotesTest {
     public ScreenshotRule screenshotRule = new ScreenshotRule(ScreenshotRule.Mode.FAILURE, generateScreenshotName("Failed"));
 
 
-    @After
-    public void Out() {
-        authorizationPage.LogOut();
-    }
-
     @Before
     public void In() {
-        authorizationPage.LogIn();
+        authorizationPage.logInCheck();
         quotesPage.goToQuotes();
-
     }
 
     @Test

@@ -44,14 +44,8 @@ public class AboutTest {
 
     @Before
     public void In() {
-        authorizationPage.LogIn();
+        authorizationPage.logInCheck();
         aboutPage.OpenAboutPage();
-    }
-
-    @After
-    public void Out() {
-        aboutPage.clickOutButton();
-        authorizationPage.LogOut();
     }
 
     @Test
