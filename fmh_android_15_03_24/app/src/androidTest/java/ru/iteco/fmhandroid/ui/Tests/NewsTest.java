@@ -98,7 +98,7 @@ public class NewsTest {
 
     @Test
     @DisplayName("Фильтруем новости по определенной дате")
-    public void filterByDate() {
+    public void filterDate() {
         newsPage.goToTheNews();
         newsPage.filterDateNews(localDateToStr, localDateToStrAfter);
     }

@@ -88,7 +88,7 @@ public class Data {
     public static final String parseDay = Integer.toString(dayOfMonth);
     public static final String parseMonth = Integer.toString(month);
     public static final String parseYear = Integer.toString(year);
-    public static final String localDateToStr = "0" + parseDay + "." + "0" + parseMonth + "." + parseYear;
+    public static final String localDateToStr = parseDay + "." + "0" + parseMonth + "." + parseYear;
     static int randomNumber = ThreadLocalRandom.current().nextInt(8);
     static LocalDate randomDate = date.plusWeeks(randomNumber);
     public static final int yearAfter = randomDate.getYear();

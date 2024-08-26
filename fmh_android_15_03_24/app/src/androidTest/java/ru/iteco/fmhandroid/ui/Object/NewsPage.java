@@ -25,6 +25,7 @@ import static ru.iteco.fmhandroid.ui.Data.Data.titleFieldId;
 import static ru.iteco.fmhandroid.ui.Data.DataHelper.clickButton;
 import static ru.iteco.fmhandroid.ui.Data.DataHelper.clickScrollToButton;
 import static ru.iteco.fmhandroid.ui.Data.DataHelper.inputText;
+import static ru.iteco.fmhandroid.ui.Data.DataHelper.waitForElement;
 import static ru.iteco.fmhandroid.ui.Data.DataHelper.waitingForElement;
 
 import androidx.test.espresso.IdlingPolicies;
@@ -109,8 +110,7 @@ public class NewsPage {
         selectTime(time);
         inputDescription(description);
         inpuTitle(title);
-        clickSaveButtonWithScroll();
-        //clickScrollToButton(newsSaveButtonId);
+        clickScrollToButton(newsSaveButtonId);
     }
 
     public void openNew(String title) {
@@ -125,17 +125,18 @@ public class NewsPage {
                 .perform(DataHelper.clickChildViewWithId(R.id.edit_news_item_image_view));
     }
 
-    public void editNew(String New, String deletedCategory, String category, String description, String title, String date, String time) {
+    public void editNew(String addNewTitlle, String deletedCategory, String category, String description, String title, String date, String time) {
         step("Редактируем новость");
-        openNew(New);
+        goToTheNews();
+        clickButton(editNewsButtonId);
+        openNew(addNewTitlle);
         deleteCategory(deletedCategory);
         selectCategory(category);
         inpuTitle(title);
         selectDate(date);
         selectTime(time);
         inputDescription(description);
-        clickSaveButtonWithScroll();
-        //clickScrollToButton(newsSaveButtonId);
+        clickScrollToButton(newsSaveButtonId);
     }
 
     public void deleteNew(String newName) {
@@ -190,11 +191,6 @@ public class NewsPage {
                                 6)));
 
         filterButton.perform(click());
-    }
-    private final int saveButtonId = R.id.save_button;
-    public void clickSaveButtonWithScroll() {
-        Allure.step("Клик со скроллом по кнопке c id: " + saveButtonId);
-        onView((withId(saveButtonId))).perform(scrollTo(), click());
     }
 }
 
